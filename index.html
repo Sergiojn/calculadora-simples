@@ -15,48 +15,49 @@
             <div class="calculadora">
 
                 <h1>Calculadora</h1>
+                
 
-                <p id="resultado"> testew</p>
+                <p id="resultado"> </p>
 
                 <table>
                     
                     <tr>
                     
-                        <td><button class="botao">C</button></td>
-                        <td><button class="botao"><</button></td>
-                        <td><button class="botao">/</button></td>
-                        <td><button class="botao">X</button></td>
+                        <td><button class="botao" onclick="captura('acao','c')">C</button></td>
+                        <td><button class="botao" onclick="captura('acao','<')"><</button></td>
+                        <td><button class="botao" onclick="captura('acao','/')">/</button></td>
+                        <td><button class="botao" onclick="captura('acao','*')">X</button></td>
                     
                     </tr>
 
                     <tr>
                     
-                        <td><button class="botao">7</button></td>
-                        <td><button class="botao">8</button></td>
-                        <td><button class="botao">9</button></td>
-                        <td><button class="botao">-</button></td>
+                        <td><button class="botao" onclick="captura('num','7')">7</button></td>
+                        <td><button class="botao" onclick="captura('num','8')">8</button></td>
+                        <td><button class="botao" onclick="captura('num','9')">9</button></td>
+                        <td><button class="botao" onclick="captura('acao','-')">-</button></td>
                     
                     </tr>
                     <tr>
                     
-                        <td><button class="botao">4</button></td>
-                        <td><button class="botao">5</button></td>
-                        <td><button class="botao">6</button></td>
-                        <td><button class="botao">+</button></td>
+                        <td><button class="botao" onclick="captura('num','4')">4</button></td>
+                        <td><button class="botao" onclick="captura('num','5')">5</button></td>
+                        <td><button class="botao" onclick="captura('num','6')">6</button></td>
+                        <td><button class="botao" onclick="captura('acao','+')">+</button></td>
                     
                     </tr>
                     <tr>
                     
-                        <td><button class="botao">1</button></td>
-                        <td><button class="botao">2</button></td>
-                        <td ><button class="botao">3</button></td>
-                        <td rowspan="2"><button class="botao" style="height: 102px;">=</button></td>
+                        <td><button class="botao" onclick="captura('num','1')">1</button></td>
+                        <td><button class="botao" onclick="captura('num','2')">2</button></td>
+                        <td ><button class="botao" onclick="captura('num','3')">3</button></td>
+                        <td rowspan="2"><button class="botao" style="height: 102px;" onclick="captura('acao','=')">=</button></td>
                     
                     </tr>
                     <tr>
                     
-                        <td colspan="2"><button class="botao" style="width: 102px;">0</button></td>
-                        <td><button class="botao">.</button></td>
+                        <td colspan="2"><button class="botao" style="width: 102px;" onclick="captura('num','0')">0</button></td>
+                        <td><button class="botao" onclick="captura('acao','.')">.</button></td>
                     
                     </tr>
                     
@@ -64,8 +65,40 @@
 
             </div>
         </div>
+        
         <script>
-            
+            function captura (acao, valor) {
+                
+                //retorna a tag toda
+                let tag = document.getElementById('resultado')
+                //console.log(document.getElementById('resultado')) 
+
+                let operacao = tag.innerHTML += valor
+                
+                
+                
+                if (acao === 'acao'  && valor === "=") {
+
+                    operacao = operacao.replace("=", "")  
+                    tag.innerHTML = eval(operacao)
+                
+                }else  if (acao === 'acao'  && valor == "<") {
+                    
+                    let val_length = 0
+
+                    operacao = operacao.replace("<", "")
+                    tag.innerHTML = operacao
+                    
+                    val_length = operacao.length - 1
+                    operacao = operacao.slice(0, val_length)
+                    tag.innerHTML = operacao
+                    
+                }else if(acao === 'acao' && valor == 'c'){
+
+                    tag.innerHTML = 0   
+                }
+
+            }
         </script>
         
     </body>
